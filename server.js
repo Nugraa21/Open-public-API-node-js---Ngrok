@@ -33,12 +33,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ===============================
 app.listen(DASHBOARD_PORT, async () => {
 
-    console.log(`\n=== DASHBOARD BERJALAN ===`);
-    console.log(`http://localhost:${DASHBOARD_PORT}`);
-    console.log(`===========================\n`);
+    console.log(`-----------------------------------------`);
+    console.log(`>>  Dashboard berjalan di: http://localhost:${DASHBOARD_PORT}`);
+    console.log(`-----------------------------------------\n`);
 
     try {
-        console.log("🔌 Menghubungkan ngrok ke XAMPP (port 80)...");
+        console.log("-----------------------------------------");
+        console.log("Menghubungkan ngrok ke XAMPP (port 80)...");
+        console.log("-----------------------------------------");
 
         // ===============================
         // NGROK CONNECT KE XAMPP
@@ -49,8 +51,8 @@ app.listen(DASHBOARD_PORT, async () => {
         });
 
         const ngrokURL = listener.url();
-        console.log(`🌍 Ngrok URL aktif: ${ngrokURL}`);
-        console.log(`📡 Akses backend XAMPP: ${ngrokURL}/backendapk/\n`);
+        console.log(`>> Ngrok URL aktif: ${ngrokURL}`);
+        console.log(`>> Akses backend XAMPP: ${ngrokURL}/backendapk/\n`);
 
         // simpan URL agar dashboard bisa baca
         fs.writeFileSync(
@@ -59,6 +61,6 @@ app.listen(DASHBOARD_PORT, async () => {
         );
 
     } catch (err) {
-        console.error("❌ NGROK ERROR:", err);
+        console.error("X NGROK ERROR:", err);
     }
 });

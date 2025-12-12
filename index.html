@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .text{
+            color: if(style(--reed: merah): red; else: blue ;);
+            background-color: if(style(--reed: text): red; else: blue ;);
+            font-famely: if(style(--reed: font): Arial; else: Helvetica ;);
+            border: 2px solid if(style(--reed: border): green; else: black ;);
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="--reed :border " class="text">Test aja xixixi</h1>
+</body>
+</html>

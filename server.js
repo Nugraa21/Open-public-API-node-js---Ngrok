@@ -6,61 +6,56 @@ const fs = require('fs');
 
 const app = express();
 
-// ===============================
-// KONFIGURASI PORT
-// ===============================
-const DASHBOARD_PORT = 3000;  // Dashboard
-const XAMPP_PORT = 80;        // Backend XAMPP (Ngrok)
+// Security modules
+const helmetConfig = require('./security/helmet-config');
+const rateLimit = require('./security/rate-limit');
+const corsConfig = require('./security/cors-config');
 
-// ===============================
-// API untuk dashboard
-// ===============================
+// Apply Security
+helmetConfig(app);
+app.use(rateLimit);
+app.use(corsConfig);
+
+// ========================
+const DASHBOARD_PORT = 3000;
+const XAMPP_PORT = 80;
+// ========================
+
+// API
 app.get('/api/status', (req, res) => {
     res.json({
         dashboard: "online",
         xampp_api: "ngrok-enabled",
+        secure: true,
         time: new Date().toISOString()
     });
 });
 
-// ===============================
-// SERVE FILE FRONTEND
-// ===============================
+// Public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ===============================
-// JALANKAN DASHBOARD
-// ===============================
+// Jalankan Dashboard
 app.listen(DASHBOARD_PORT, async () => {
 
-    console.log(`-----------------------------------------`);
-    console.log(`>>  Dashboard berjalan di: http://localhost:${DASHBOARD_PORT}`);
-    console.log(`-----------------------------------------\n`);
+    console.log(`Dashboard: http://localhost:${DASHBOARD_PORT}`);
 
     try {
-        console.log("-----------------------------------------");
-        console.log("Menghubungkan ngrok ke XAMPP (port 80)...");
-        console.log("-----------------------------------------");
+        console.log("Menghubungkan ke ngrok...");
 
-        // ===============================
-        // NGROK CONNECT KE XAMPP
-        // ===============================
         const listener = await ngrok.connect({
             addr: XAMPP_PORT,
             authtoken: process.env.NGROK_AUTHTOKEN,
         });
 
         const ngrokURL = listener.url();
-        console.log(`>> Ngrok URL aktif: ${ngrokURL}`);
-        console.log(`>> Akses backend XAMPP: ${ngrokURL}/backendapk/\n`);
+        console.log(`Ngrok aktif: ${ngrokURL}`);
 
-        // simpan URL agar dashboard bisa baca
         fs.writeFileSync(
             path.join(__dirname, "public/ngrok.json"),
             JSON.stringify({ url: ngrokURL }, null, 4)
         );
 
     } catch (err) {
-        console.error("X NGROK ERROR:", err);
+        console.error("NGROK ERROR:", err);
     }
 });

@@ -20,7 +20,7 @@ app.get('/api/status', (req, res) => {
 
 // Serve dashboard frontend
 app.use(express.static(path.join(__dirname, 'public')));
-
+const indexPath = path.join(__dirname, 'public', 'index.html');
 // ------------------------
 // START DASHBOARD SERVER
 // ------------------------

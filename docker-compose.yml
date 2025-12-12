@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  dashboard:
+    build: .
+    container_name: dashboard-ngrok
+    ports:
+      - "3000:3000"        # Dashboard UI
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    volumes:
+      - .:/app
+    restart: always
+    command: >
+      sh -c "ngrok start --all --config /app/ngrok.yml &
+             npm start"

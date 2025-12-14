@@ -20,7 +20,7 @@ Semua fitur sudah dirancang sesuai kebutuhan projek kamu (Ludang Prasetyo Nugroh
 ## 📦 Instalasi
 
 Clone project lalu install semua dependency:
-             
+               
 ```bash   
 npm install express express-session http-proxy-middleware @ngrok/ngrok dotenv
 ```

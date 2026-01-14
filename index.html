@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ラニへ</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brownLight: '#f5eee6',
+            brownMid: '#e6d3b1',
+            brownText: '#4b3621'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-brownLight to-brownMid text-brownText">
+
+  <main class="relative bg-[#fffdf8] max-w-2xl w-full mx-4 px-12 py-14 rounded-3xl shadow-[0_25px_60px_rgba(75,54,33,0.25)] animate-fadeUp before:content-[''] before:absolute before:inset-0 before:rounded-3xl before:bg-[repeating-linear-gradient(0deg,#00000005_0px,#00000005_1px,transparent_1px,transparent_28px)] before:pointer-events-none">
+    
+    <h1 class="text-4xl md:text-5xl font-semibold text-center mb-10 tracking-wide">
+      <!-- ラニへ --> Hai R.
+    </h1>
+
+    <p class="text-center leading-loose text-lg md:text-xl">
+      こんにちは、<span class="font-semibold">ルダン</span>です。<br />
+      僕は、きれいな言葉を並べるのが得意ではありません。<br />
+      でも、静かに確信していることがあります。<br />
+      <span class="font-medium">あなたのことが、好きです。</span>
+    </p>
+
+    <p class="text-center leading-loose text-lg md:text-xl mt-10">
+      理由を並べる必要はなくて、<br />
+      大きな言葉もいりません。<br />
+      ただ、あなたを思い出すと、<br />
+      いつもより少し、心がやわらぐ。<br />
+      それが、今の僕の正直な気持ちです。
+    </p>
+
+    <div class="mt-14 text-center text-base md:text-lg opacity-60 italic">
+      ― 紙に書くような気持ちで
+    </div>
+
+  </main>
+
+  <style>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fadeUp {
+      animation: fadeUp 1.4s ease-out;
+    }
+  </style>
+
+</body>
+</html>
